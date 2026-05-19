@@ -1,12 +1,6 @@
-# This tells Docker to use Python
 FROM python:3.10-slim
-
-# Set the working directory inside the container
 WORKDIR /app
-
-# Copy the requirements file and install Django/MySQL tools
+RUN apt-get update && apt-get install -y pkg-config default-libmysqlclient-dev build-essential && rm -rf /var/lib/apt/lists/*
 COPY requirements.txt .
 RUN pip install -r requirements.txt
-
-
 COPY . .
